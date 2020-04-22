@@ -1,6 +1,7 @@
 import React, { Component } from "react";
+import mapboxgl from 'mapbox-gl';
 import "./map.css";
-import mapboxgl from 'mapbox-gl'
+import DropZone from "../../components/Dropzone";
 
 mapboxgl.accessToken = 'pk.eyJ1IjoiamVzc2UwbWljaGFlbCIsImEiOiJjazk5NDR0MDAweDB3M2Z0YW9ia2x4cjgxIn0._3heS1yvmszc0MIOphnH5g';
 
@@ -42,6 +43,7 @@ class Map extends Component {
                     <div>Longitude: {this.state.lng} Latitude: {this.state.lat} </div>
                 </div>
                 <div id="map" className="mapContainer"></div>
+                <DropZone onLoad={this.setGeoJSON} />
             </div>
         );
     }
