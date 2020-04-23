@@ -55,7 +55,7 @@ const Map = () => {
 
 	const alert = useAlert();
 	const setError = (err) => {
-		alert.error(err, { className: "aaa" });
+		alert.error(err);
 		var d = document.getElementById("map");
 		d.classList.add("shake");
 		setTimeout(() => {
