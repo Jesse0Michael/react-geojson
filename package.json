@@ -5,9 +5,12 @@
   "dependencies": {
     "mapbox-gl": "^1.9.1",
     "react": "^16.13.1",
+    "react-alert": "^7.0.0",
+    "react-alert-template-basic": "^1.0.0",
     "react-dom": "^16.13.1",
     "react-dropzone": "^10.2.2",
-    "react-scripts": "3.4.1"
+    "react-scripts": "3.4.1",
+    "uuid": "^7.0.3"
   },
   "scripts": {
     "start": "react-scripts start",

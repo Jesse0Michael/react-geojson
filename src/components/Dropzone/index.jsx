@@ -1,33 +1,60 @@
-import React, { useCallback } from 'react'
-import { useDropzone } from 'react-dropzone'
+import React, { useCallback, useState } from "react";
+import { useDropzone } from "react-dropzone";
 import "./dropzone.css";
 
-function DropZone({ onLoad }) {
-    const onDrop = useCallback((acceptedFiles) => {
-        acceptedFiles.forEach((file) => {
-            const reader = new FileReader()
+function DropZone({ onLoad, onError }) {
+	const [state, setState] = useState({
+		drag: false,
+	});
 
-            reader.onabort = () => console.log('file reading was aborted')
-            reader.onerror = () => console.log('file reading has failed')
-            reader.onload = () => {
-                // Do whatever you want with the file contents
-                const binaryStr = reader.result
-                console.log(binaryStr)
-            }
-            reader.readAsArrayBuffer(file)
+	const onDrop = useCallback(
+		(acceptedFiles) => {
+			setState({ drag: false });
+			acceptedFiles.forEach((file) => {
+				const reader = new FileReader();
 
-            onLoad("yolo");
-        })
+				reader.onabort = () => onError("file reading was aborted");
+				reader.onerror = () => onError("file reading has failed");
+				reader.onload = () => {
+					var json;
+					try {
+						json = JSON.parse(reader.result);
+					} catch {
+						onError("cannot parse geoJSON from file");
+						return;
+					}
+					onLoad(json);
+				};
+				reader.readAsText(file);
+			});
+		},
+		[onLoad, onError]
+	);
 
-    }, [onLoad])
-    const { getRootProps, getInputProps } = useDropzone({ onDrop })
+	const onDrag = () => {
+		setState({ drag: true });
+	};
+	const onLeave = () => {
+		setState({ drag: false });
+	};
 
-    return (
-        <div className="dropzone" {...getRootProps()}>
-            <p>Drag geo JSON files here, or click to select files</p>
-            <input className="button" {...getInputProps()} style={{ display: "block" }} />
-        </div>
-    )
+	const { getRootProps, getInputProps } = useDropzone({
+		onDrop,
+		noClick: true,
+	});
+
+	return (
+		<div
+			className={state.drag ? "dropzone dropzone-drag" : "dropzone"}
+			{...getRootProps()}
+			onDragOver={(e) => onDrag(e)}
+			onDragEnter={(e) => onDrag(e)}
+			onDragLeave={(e) => onLeave(e)}
+		>
+			<p style={{ pointerEvents: "none" }}>Drag geo JSON files here, or click to select files</p>
+			<input className="button" {...getInputProps()} style={{ display: "block" }} />
+		</div>
+	);
 }
 
 export default DropZone;
