@@ -25,4 +25,4 @@ jobs:
 
       - run: npm ci
       - run: npm run build
-      - run: npm run deploy
+      - run: npm run deploy -u "Jesse Michael jesse.michael1234@gmail.com"
