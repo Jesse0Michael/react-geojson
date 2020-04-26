@@ -2,6 +2,7 @@ import React, { useState, useEffect } from "react";
 import { useAlert } from "react-alert";
 import { v4 as uuid } from "uuid";
 import mapboxgl from "mapbox-gl";
+import { center } from "@turf/turf";
 import "./map.css";
 import "./shake.css";
 import DropZone from "../../components/Dropzone";
@@ -24,6 +25,7 @@ const Map = () => {
 		});
 		map.on("move", () => {
 			setState({
+				map: map,
 				lng: map.getCenter().lng.toFixed(4),
 				lat: map.getCenter().lat.toFixed(4),
 			});
@@ -36,10 +38,18 @@ const Map = () => {
 	}, []);
 
 	const setGeoJSON = (data) => {
+		var c;
+		try {
+			c = center(data)
+		} catch {
+			setError("JSON is not valid geometry");
+			return
+		}
+
 		const id = uuid();
 		state.map.addSource(id, {
 			type: "geojson",
-			data,
+			data: data,
 		});
 		state.map.addLayer({
 			id,
@@ -50,6 +60,10 @@ const Map = () => {
 				"fill-color": "#088",
 				"fill-opacity": 0.8,
 			},
+		});
+		state.map.flyTo({
+			center: c.geometry.coordinates,
+			essential: true // this animation is considered essential with respect to prefers-reduced-motion
 		});
 	};
 

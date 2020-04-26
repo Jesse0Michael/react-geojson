@@ -4,6 +4,7 @@
     "private": true,
     "homepage": "https://jesse0michael.github.io/react-geojson/",
     "dependencies": {
+        "@turf/turf": "^5.1.6",
         "mapbox-gl": "^1.9.1",
         "react": "^16.13.1",
         "react-alert": "^7.0.0",
