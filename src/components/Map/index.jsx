@@ -61,9 +61,42 @@ const Map = () => {
 				"fill-opacity": 0.8,
 			},
 		});
+		var popup = new mapboxgl.Popup({
+			closeButton: false,
+			closeOnClick: false,
+			maxWidth: '480px'
+		});
+		state.map.on('mouseenter', id, function (e) {
+			// Change the cursor style as a UI indicator.
+			state.map.getCanvas().style.cursor = 'pointer';
+
+			var coordinates = center(e.features[0]).geometry.coordinates;
+			var description = e.features[0].properties;
+			var output = '';
+			for (let [key, value] of Object.entries(description)) {
+				output += `${key}: ${value}<br />`;
+			}
+
+			// Ensure that if the map is zoomed out such that multiple
+			// copies of the feature are visible, the popup appears
+			// over the copy being pointed to.
+			while (Math.abs(e.lngLat.lng - coordinates[0]) > 180) {
+				coordinates[0] += e.lngLat.lng > coordinates[0] ? 360 : -360;
+			}
+
+			popup.setLngLat(coordinates)
+				.setHTML(output)
+				.addTo(state.map);
+		});
+
+		state.map.on('mouseleave', id, function () {
+			state.map.getCanvas().style.cursor = '';
+			popup.remove();
+		});
 		state.map.flyTo({
 			center: c.geometry.coordinates,
-			essential: true // this animation is considered essential with respect to prefers-reduced-motion
+			zoom: 11,
+			essential: true
 		});
 	};
 
