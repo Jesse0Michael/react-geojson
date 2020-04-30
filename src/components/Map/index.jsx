@@ -42,8 +42,14 @@ const Map = () => {
 		try {
 			c = center(data)
 		} catch {
-			setError("JSON is not valid geometry");
-			return
+			var trip = tryParseTrips(data)
+			try {
+				c = center(trip)
+				data = trip
+			} catch {
+				setError("JSON is not valid geometry");
+				return
+			}
 		}
 
 		const id = uuid();
@@ -53,12 +59,13 @@ const Map = () => {
 		});
 		state.map.addLayer({
 			id,
-			type: "fill",
+			type: "line",
 			source: id,
 			layout: {},
 			paint: {
-				"fill-color": "#088",
-				"fill-opacity": 0.8,
+				"line-color": "#088",
+				"line-opacity": 0.8,
+				"line-width": 3,
 			},
 		});
 		var popup = new mapboxgl.Popup({
@@ -122,5 +129,24 @@ const Map = () => {
 		</div>
 	);
 };
+
+function tryParseTrips(data) {
+	console.log(data)
+	if (Array.isArray(data.data)) {
+		var features = data.data.map(d => tryParseTrip(d))
+		console.log(features)
+		return { type: "FeatureCollection", features: features }
+	} else {
+		return tryParseTrip(data)
+	}
+}
+
+function tryParseTrip(data) {
+	var entities = data.entities.map(x => ({ entityID: x.entityID, entityType: x.type }))
+	var properties = { id: data.id, entities, bounds: data.bounds, distance: data.distance, duration: data.duration, violations: data.violations }
+	var coordinates = data.path.map(x => ([x.lng, x.lat]))
+	var geometry = { type: "LineString", coordinates }
+	return { type: "Feature", properties, geometry }
+}
 
 export default Map;
