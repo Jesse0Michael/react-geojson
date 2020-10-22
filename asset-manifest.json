@@ -1,22 +1,22 @@
 {
   "files": {
     "main.css": "/react-geojson/static/css/main.b496b26d.chunk.css",
-    "main.js": "/react-geojson/static/js/main.b04f754f.chunk.js",
-    "main.js.map": "/react-geojson/static/js/main.b04f754f.chunk.js.map",
+    "main.js": "/react-geojson/static/js/main.3e68470b.chunk.js",
+    "main.js.map": "/react-geojson/static/js/main.3e68470b.chunk.js.map",
     "runtime-main.js": "/react-geojson/static/js/runtime-main.7e0903ce.js",
     "runtime-main.js.map": "/react-geojson/static/js/runtime-main.7e0903ce.js.map",
-    "static/js/2.704f5589.chunk.js": "/react-geojson/static/js/2.704f5589.chunk.js",
-    "static/js/2.704f5589.chunk.js.map": "/react-geojson/static/js/2.704f5589.chunk.js.map",
+    "static/js/2.f6e24f8e.chunk.js": "/react-geojson/static/js/2.f6e24f8e.chunk.js",
+    "static/js/2.f6e24f8e.chunk.js.map": "/react-geojson/static/js/2.f6e24f8e.chunk.js.map",
     "index.html": "/react-geojson/index.html",
-    "precache-manifest.6a292fefefd36628fb777859c4b7c691.js": "/react-geojson/precache-manifest.6a292fefefd36628fb777859c4b7c691.js",
+    "precache-manifest.e8e2ad8db29cd6908bee6ade6d422600.js": "/react-geojson/precache-manifest.e8e2ad8db29cd6908bee6ade6d422600.js",
     "service-worker.js": "/react-geojson/service-worker.js",
     "static/css/main.b496b26d.chunk.css.map": "/react-geojson/static/css/main.b496b26d.chunk.css.map",
-    "static/js/2.704f5589.chunk.js.LICENSE.txt": "/react-geojson/static/js/2.704f5589.chunk.js.LICENSE.txt"
+    "static/js/2.f6e24f8e.chunk.js.LICENSE.txt": "/react-geojson/static/js/2.f6e24f8e.chunk.js.LICENSE.txt"
   },
   "entrypoints": [
     "static/js/runtime-main.7e0903ce.js",
-    "static/js/2.704f5589.chunk.js",
+    "static/js/2.f6e24f8e.chunk.js",
     "static/css/main.b496b26d.chunk.css",
-    "static/js/main.b04f754f.chunk.js"
+    "static/js/main.3e68470b.chunk.js"
   ]
 }
