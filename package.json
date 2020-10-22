@@ -2,7 +2,7 @@
     "name": "react-geojson",
     "version": "0.1.0",
     "private": true,
-    "homepage": "https://jesse0michael.github.io/react-geojson/",
+    "homepage": "https://jesse0michael.github.io/react-geojson/#/",
     "dependencies": {
         "@turf/turf": "^5.1.6",
         "mapbox-gl": "^1.12.0",

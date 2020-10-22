@@ -1,7 +1,7 @@
 import React from "react";
 import ReactDOM from "react-dom";
 import { transitions, positions, Provider as AlertProvider } from "react-alert";
-import { BrowserRouter, Switch, Route } from 'react-router-dom';
+import { HashRouter, Switch, Route } from 'react-router-dom';
 import AlertTemplate from "react-alert-template-basic";
 import "./index.css";
 import Map from "./components/Map";
@@ -29,15 +29,15 @@ const Websocket = () => (
 const Main = () => {
 	return (
 		<Switch>
-			<Route exact path='/react-geojson' component={Root}></Route>
-			<Route exact path='/react-geojson/websocket' component={Websocket}></Route>
+			<Route exact path='/' component={Root}></Route>
+			<Route exact path='/websocket' component={Websocket}></Route>
 		</Switch>
 	);
 }
 
 ReactDOM.render(
-	<BrowserRouter>
+	<HashRouter>
 		<Main />
-	</BrowserRouter>,
+	</HashRouter>,
 	document.getElementById('root')
 );
