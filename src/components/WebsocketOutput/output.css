@@ -1,0 +1,16 @@
+.output-area {
+  display: inline-block;
+  position: absolute;
+  bottom: 40px;
+  left: 0;
+  margin: 12px;
+  color: #404040;
+  z-index: 1 !important;
+  padding: 6px;
+  font-weight: bold;
+  width: 700px;
+  height: 78px;
+  resize: none;
+  border: none;
+  box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
+}

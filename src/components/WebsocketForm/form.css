@@ -1,0 +1,19 @@
+.form {
+  display: inline-block;
+  position: absolute;
+  top: 0;
+  left: 0;
+  margin: 12px;
+  color: #404040;
+  padding: 6px;
+  font-weight: bold;
+}
+
+.url-input {
+  width: 600px;
+  margin: 0px 6px;
+}
+
+.button {
+  margin: 0px 6px;
+}
